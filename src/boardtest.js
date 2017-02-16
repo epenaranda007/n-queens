@@ -134,20 +134,24 @@
     //
     // test if a specific major diagonal on this board contains a conflict
     hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) { 
+      console.log(majorDiagonalColumnIndexAtFirstRow);
       var boardLength = this.get(0).length;
       var colIndex = majorDiagonalColumnIndexAtFirstRow;
       var result = 0;
+
+      if (colIndex === 0) {
+        var column = 0;
+        for (var row = 1; row < boardLength; row++, column++) {
+          console.log(row, column, 'row / column');
+          result += this.get(row)[column];
+        }
+      }
     
-      for (var rowIndex = 0; colIndex < boardLength; rowIndex++, colIndex++) {
-        var row = this.get(rowIndex);
-        if (!row) {
+      for (var row = 0; colIndex < boardLength; row++, colIndex++) {
+        if (!this.get(row)) {
           break;
         }
-        if (!row[colIndex]) {
-          continue;
-        } else {
-          result += this.get(rowIndex)[colIndex];
-        }
+        result += this.get(row)[colIndex];
       }
 
       return result > 1;
@@ -158,7 +162,7 @@
       var boardLength = this.get(0).length;
       var hasConflict = false;
 
-      for (var col = 0 - boardLength; col < boardLength; col++) {
+      for (var col = 0; col < boardLength; col++) {
         hasConflict = hasConflict || this.hasMajorDiagonalConflictAt(col);
       }
 
@@ -176,16 +180,11 @@
       var colIndex = minorDiagonalColumnIndexAtFirstRow;
       var result = 0;
     
-      for (var rowIndex = 0; colIndex >= 0; rowIndex++, colIndex--) {
-        var row = this.get(rowIndex);
-        if (!row) {
+      for (var row = 0; colIndex >= 0; row++, colIndex--) {
+        if (!this.get(row)) {
           break;
         }
-        if (!row[colIndex]) {
-          continue;
-        } else {
-          result += this.get(rowIndex)[colIndex];
-        }
+        result += this.get(row)[colIndex];
       }
       return result > 1;
     },
@@ -195,7 +194,7 @@
       var boardLength = this.get(0).length;
       var hasConflict = false;
 
-      for (var col = boardLength * 2; col >= 0; col--) {
+      for (var col = boardLength - 1; col >= 0; col--) {
         hasConflict = hasConflict || this.hasMinorDiagonalConflictAt(col);
       }
 
