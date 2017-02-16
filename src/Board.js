@@ -89,7 +89,7 @@
 
     // test if any rows on this board contain conflicts
     hasAnyRowConflicts: function() {
-      var boardLength = this.get(0).length;
+      var boardLength = this.rows().length;
       var hasConflict = false;
 
       for (var i = 0; i < boardLength; i++) {
@@ -106,7 +106,7 @@
     //
     // test if a specific column on this board contains a conflict
     hasColConflictAt: function(colIndex) {
-      var boardLength = this.get(0).length;
+      var boardLength = this.rows().length;
       var result = 0;
       for (var i = 0; i < boardLength; i++) {
         result += this.get(i)[colIndex];
@@ -117,7 +117,7 @@
 
     // test if any columns on this board contain conflicts
     hasAnyColConflicts: function() {
-      var boardLength = this.get(0).length;
+      var boardLength = this.rows().length;
       var hasConflict = false;
 
       for (var i = 0; i < boardLength; i++) {
@@ -134,7 +134,7 @@
     //
     // test if a specific major diagonal on this board contains a conflict
     hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) { 
-      var boardLength = this.get(0).length;
+      var boardLength = this.rows().length;
       var colIndex = majorDiagonalColumnIndexAtFirstRow;
       var result = 0;
     
@@ -155,7 +155,7 @@
 
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
-      var boardLength = this.get(0).length;
+      var boardLength = this.rows().length;
       var hasConflict = false;
 
       for (var col = 0 - boardLength; col < boardLength; col++) {
@@ -172,7 +172,7 @@
     //
     // test if a specific minor diagonal on this board contains a conflict
     hasMinorDiagonalConflictAt: function(minorDiagonalColumnIndexAtFirstRow) {
-      var boardLength = this.get(0).length;
+      var boardLength = this.rows().length;
       var colIndex = minorDiagonalColumnIndexAtFirstRow;
       var result = 0;
     
@@ -192,7 +192,7 @@
 
     // test if any minor diagonals on this board contain conflicts
     hasAnyMinorDiagonalConflicts: function() {
-      var boardLength = this.get(0).length;
+      var boardLength = this.rows().length;
       var hasConflict = false;
 
       for (var col = boardLength * 2; col >= 0; col--) {
