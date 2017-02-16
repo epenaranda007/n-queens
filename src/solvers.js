@@ -15,8 +15,32 @@
 
 
 
-window.findNRooksSolution = function(n) {
-  var solution = undefined; //fixme
+window.findNRooksSolution = function(size) {
+  var solution = new Board({n: size});
+  var board = solution.rows();
+
+  //iterate over the board
+  for (var row = 0; row < board.length; row++) {
+    for (var index = 0; index < board[row].length; index++) {
+      board[row][index] = 1;
+      if (solution.hasAnyRowConflicts()) {
+        board[row][index] = 0;
+        break;
+      }
+      if (solution.hasAnyColConflicts()) {
+        board[row][index] = 0;
+      }
+    }  
+  }
+  //iterate over each row
+  //place a piece
+  //check if has row collision
+    //if true remove the current the current piece, break from iteration
+  //check for column collision 
+    //if true remove piece
+  //return solution
+
+
 
   console.log('Single solution for ' + n + ' rooks:', JSON.stringify(solution));
   return solution;
