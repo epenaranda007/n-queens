@@ -44,10 +44,13 @@ describe('solvers', function() {
             return memo + col;
           }, 0);
         }, 0);
-
+        console.log('solutionBoard.get(n)', solutionBoard.get('n'));
         expect(solutionBoard.get('n')).to.equal(n);
+        
+        console.log('numPieces:', numPieces, 'n: ', n);
         expect(numPieces).to.equal(n);
-        //console.log('result', solutionBoard.get('n'), 'n', n);
+        
+        console.log('result', solutionBoard.get('n'), 'n', n);
         expect(solutionBoard.hasAnyQueensConflicts()).to.be.equal(false);
         //console.log('result', solutionBoard.hasAnyQueensConflicts(), 'n', n);
         console.log('size: passed', n);
