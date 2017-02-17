@@ -89,32 +89,29 @@ window.countNRooksSolutions = function(n) {
 
 
 
-window.findNQueensSolution = function(n) {
+window.findNQueensSolution = function(n) { 
   var resultCount = 0;
   var board = new Board({'n': n});
-  var solution;
+  if (n === 2 || n === 3) { return board.rows(); }
 
   var findSolutions = function(rowIndex, board, queens) {
     queens = queens || 0;
-    if (solution) { return; }
-
     if (queens === n) {
-      console.log('we made it');
-      solution = board;
-      return;
+      return board.rows();
     } else {
       for (var columnIndex = 0; columnIndex < n; columnIndex++) {
         board.togglePiece(rowIndex, columnIndex);
         queens++;
         if (!board.hasAnyQueensConflicts()) {
-          findSolutions(rowIndex + 1, board, queens);
+          var result = findSolutions(rowIndex + 1, board, queens);
+          if (result) { return result; }
         }
         board.togglePiece(rowIndex, columnIndex);
         queens--;
       }
     }
   };
-  findSolutions(0, board);
+  var solution = findSolutions(0, board);
   return solution;
 };
 
